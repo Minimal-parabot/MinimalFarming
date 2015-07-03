@@ -1,5 +1,6 @@
 package org.parabot.minimal.minimalfarming;
 
+import org.parabot.core.ui.Logger;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.framework.SleepCondition;
 import org.parabot.environment.scripts.framework.Strategy;
@@ -26,6 +27,8 @@ public class Teleporter implements Strategy
     @Override
     public void execute()
     {
+        Logger.addMessage("Teleporting to " + teleport, true);
+
         teleport.Teleport();
 
         Time.sleep(new SleepCondition()

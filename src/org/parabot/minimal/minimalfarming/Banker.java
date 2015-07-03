@@ -1,5 +1,6 @@
 package org.parabot.minimal.minimalfarming;
 
+import org.parabot.core.ui.Logger;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.framework.SleepCondition;
 import org.parabot.environment.scripts.framework.Strategy;
@@ -28,6 +29,8 @@ public class Banker implements Strategy
         if (SceneObjects.getNearest(BANK_BOOTH_ID).length == 0
                 || SceneObjects.getClosest(BANK_BOOTH_ID).distanceTo() > 10)
         {
+            Logger.addMessage("Teleporting to bank", true);
+
             Teleport.HOME_HOME.Teleport();
 
             Time.sleep(new SleepCondition()
@@ -48,6 +51,8 @@ public class Banker implements Strategy
 
                 if (bankBooth != null)
                 {
+                    Logger.addMessage("Opening bank", true);
+
                     bankBooth.interact(SceneObjects.Option.FIRST);
 
                     Time.sleep(new SleepCondition()
@@ -67,6 +72,8 @@ public class Banker implements Strategy
                 {
                     if (!exceptions.contains(i.getId()))
                     {
+                        Logger.addMessage("Depositing item " + i.getId(), true);
+
                         Menu.sendAction(431, i.getId() - 1, i.getSlot(), 5064);
 
                         Time.sleep(500);
