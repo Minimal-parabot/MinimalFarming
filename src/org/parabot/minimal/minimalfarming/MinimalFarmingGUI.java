@@ -8,11 +8,12 @@ import java.awt.event.ActionListener;
 public class MinimalFarmingGUI extends JFrame
 {
     private JComboBox<Seed> seedJComboBox;
+    private JComboBox<Teleport> teleportJComboBox;
 
     public MinimalFarmingGUI()
     {
         setLayout(new BorderLayout());
-        setSize(250, 125);
+        setSize(250, 170);
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -35,7 +36,13 @@ public class MinimalFarmingGUI extends JFrame
                 seedJComboBox.addItem(s);
             }
 
+            teleportJComboBox = new JComboBox<>();
+            teleportJComboBox.setFont(new Font("Helvetica", Font.PLAIN, 16));
+            teleportJComboBox.addItem(Teleport.SKILLING_CANIFIS);
+            teleportJComboBox.addItem(Teleport.SKILLING_CATHERBY);
+
             add(seedJComboBox);
+            add(teleportJComboBox);
         }
     }
 
@@ -61,6 +68,11 @@ public class MinimalFarmingGUI extends JFrame
     public Seed getSeed()
     {
         return (Seed) seedJComboBox.getSelectedItem();
+    }
+
+    public Teleport getTeleport()
+    {
+        return (Teleport) teleportJComboBox.getSelectedItem();
     }
 
     public static void main(String[] args)

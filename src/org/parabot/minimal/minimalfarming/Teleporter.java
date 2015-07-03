@@ -9,7 +9,13 @@ import org.rev317.min.api.methods.SceneObjects;
 
 public class Teleporter implements Strategy
 {
+    private Teleport teleport;
     private static final int[] PATCH_IDS = Seed.getPatchIds();
+
+    public Teleporter(Teleport teleport)
+    {
+        this.teleport = teleport;
+    }
 
     @Override
     public boolean activate()
@@ -20,7 +26,7 @@ public class Teleporter implements Strategy
     @Override
     public void execute()
     {
-        Teleport.SKILLING_CATHERBY.Teleport();
+        teleport.Teleport();
 
         Time.sleep(new SleepCondition()
         {

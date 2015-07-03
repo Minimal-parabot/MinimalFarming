@@ -33,13 +33,13 @@ public class MinimalFarming extends Script implements Paintable, MessageListener
 
     private Timer timer = new Timer();
 
-    private static final Color[] colors = { new Color(36, 123, 160), new Color(112, 193, 179),
+    private static final Color[] COLORS = { new Color(36, 123, 160), new Color(112, 193, 179),
             new Color(2, 128, 144), new Color(0, 168, 150),
             new Color(240, 243, 189), new Color(112, 193, 179),
             new Color(17, 75, 95), new Color(228, 253, 255),
             new Color(244, 241, 187), new Color(230, 235, 224) };
 
-    private static final Color TITLE_COLOR = colors[Random.between(0, colors.length - 1)];
+    private static final Color TITLE_COLOR = COLORS[Random.between(0, COLORS.length - 1)];
 
     private static final int STARTING_EXPERIENCE = Skill.FARMING.getExperience();
     private int herbsCollected = 0;
@@ -59,10 +59,11 @@ public class MinimalFarming extends Script implements Paintable, MessageListener
         }
 
         Seed seed = gui.getSeed();
+        Teleport teleport = gui.getTeleport();
 
         strategies.add(new Relog());
         strategies.add(new Wait());
-        strategies.add(new Teleporter());
+        strategies.add(new Teleporter(teleport));
         strategies.add(new Banker());
         strategies.add(new CollectHerbs());
         strategies.add(new PlantSeeds(seed));
